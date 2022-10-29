@@ -1,0 +1,23 @@
+.facebook-btn{
+    width: 40%;
+    padding: 14px;
+    margin: 5px;
+    border-radius: 5px;
+    border: none;
+    background-color: blue;
+    color: white;
+    cursor: pointer;
+}
+.google-btn{
+    width: 40%;
+    padding: 14px;
+    margin: 5px;
+    border-radius: 5px;
+    border: none;
+    background-color: green;
+    color: white;
+    cursor: pointer;
+}
+#icons{
+    margin-right: 5px;
+}
