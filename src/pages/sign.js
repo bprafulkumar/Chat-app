@@ -19,10 +19,11 @@ const Signin = () => {
                 })
             }
 
-            console.log("success")
+            alert("success",5000)
         } catch(err){
             // alert.info(err.message,4000)
-            console.log(err.message,"error")
+            // console.log(err.message,"error")
+            alert(err.message,"errror",5000)
         }
 
     }
