@@ -5,7 +5,7 @@ import Home from "./pages/Home";
 import Signin from "./pages/sign";
 import PrivateRoute from "./components/privateRouter";
 import PublicRouter from "./components/PublicRoute";
-import { ProfileProvider } from "./Context/Profile.context";
+import { ProfileProvider, } from "./Context/Profile.context";
 import 'rsuite/dist/styles/rsuite-default.css';
 
 

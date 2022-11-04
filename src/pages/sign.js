@@ -1,11 +1,14 @@
 import React from "react";
-import { Container,Grid,Row,Panel,Col,Button } from 'rsuite';
+import { Container,Grid,Row,Panel,Col,Button, Icon, Alert } from 'rsuite';
 import "../Cssfile/Signin.css"
 import firebase from "firebase/app"
 import { auth, database } from "../misc/firebase";
+import { Navigate, useNavigate } from "react-router-dom";
 
 
 const Signin = () => {
+
+    const navigate = useNavigate()
 
     const singinWithProvider = async (provider) => {
 
@@ -19,11 +22,11 @@ const Signin = () => {
                 })
             }
 
-            alert("success",5000)
+            Alert.success("Signed in" , 4000)
         } catch(err){
             // alert.info(err.message,4000)
             // console.log(err.message,"error")
-            alert(err.message,"errror",5000)
+            Alert.info(err.message, 4000)
         }
 
     }
@@ -33,12 +36,20 @@ const Signin = () => {
     }
     const onGoogleSignin = () => {
         singinWithProvider(new firebase.auth.GoogleAuthProvider())
+        // navigate('/')
+        setTimeout(() =>{
+            navigate('/')
+        },8000)
+        
     }
+    // const redirect = () => {
+    //     <Navigate to={'/'} />
+    // }
 
     return(
         <Container>
             <Grid className="mt-page">
-                <Row>
+                <Row className="sign-main">
                     <Col xs={24} md={12} mdOffset={12}>
                         <Panel>
                             <div className="text-center">
@@ -46,17 +57,15 @@ const Signin = () => {
                                 <p>Progressive Wrok Platform for Neophythes</p>
                             </div>
 
-                            <div>
-                            <div className="text-center">
-                                <Button className="facebook-btn" onClick={onFacebookSignin}>
-                                <i className="fa-brands fa-facebook-f" id="icons"></i>Continue with Facebook
+                            <div className="mt-3">                            
+                                <Button block color="blue" onClick={onFacebookSignin}>
+                                <Icon icon="facebook"/>  Continue with Facebook
                                 </Button>
-                            </div>
-                            <div className="text-center">
-                                <Button className="google-btn" onClick={onGoogleSignin}>
-                                <i className="fa-brands fa-google" id="icons"></i>Continue with Google
+                           
+                                <Button block color="green" onClick= {onGoogleSignin}>
+                                <Icon icon="google" />  Continue with Google
                                 </Button>
-                            </div>
+
                             </div>
                         </Panel>
                     </Col>
