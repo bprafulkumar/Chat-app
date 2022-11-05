@@ -5,6 +5,7 @@ import AvatarEditor from 'react-avatar-editor'
 // import { wait } from '@testing-library/user-event/dist/utils'
 import { database, storage } from '../../misc/firebase'
 import { useProfile } from '../../Context/Profile.context'
+import Profileavatar from './Profileavatar'
 
 
 
@@ -78,6 +79,8 @@ function AvatarUploadbtn() {
 
   return (
     <div className='mt-3 text-center'>
+
+        <Profileavatar src={profile.avatar} name ={profile.name} className="img-fullsize" style={{width:'200px',height:'200px',fontSize : '100px'}} />
 
         <label htmlFor='avatar-upload' className='d-block cursor-pointer padded'>
             Select new avatar
