@@ -1,7 +1,7 @@
 import React from "react";
 import { Navigate,Route } from "react-router"
 import { useProfile } from "../Context/Profile.context";
-import Home from "../pages/Home";
+import Home from "../pages/Home/Home.js";
 import { Container, Loader } from "rsuite";
 
 

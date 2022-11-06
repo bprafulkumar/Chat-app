@@ -1,7 +1,7 @@
 import React from "react";
 import  "./styles/main.scss";
 import {Route,Routes} from "react-router-dom"
-import Home from "./pages/Home";
+import Home from "./pages/Home/Home.js";
 import Signin from "./pages/sign";
 import PrivateRoute from "./components/privateRouter";
 import PublicRouter from "./components/PublicRoute";
@@ -16,6 +16,10 @@ function App() {
     <Routes>
       <Route path="/signin" element={<Signin/>?<Signin/> : <Home/> }></Route>
       <Route path="/" element= {<PrivateRoute/> ? <PrivateRoute/> : <Home/> }></Route>
+      <Route path="/chat/:id" element= {<PrivateRoute/> ? <PrivateRoute/> : <Home/> }></Route>
+
+      {/* <Route path="/" element= {<Home/>} />
+      <Route path="/" element = {<PrivateRoute/>} /> */}
     </Routes>
     </ProfileProvider>
   );
