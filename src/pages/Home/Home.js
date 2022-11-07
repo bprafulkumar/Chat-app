@@ -15,6 +15,8 @@ const Home = () => {
 
     const canRenderSidebar = isDesktop ;
 
+    // console.log("JHcjkldckdcdncdndcndjcdnjdjn")
+
     return(
         <RoomsProvider>
 

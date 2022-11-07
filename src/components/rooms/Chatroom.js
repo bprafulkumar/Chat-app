@@ -2,13 +2,13 @@ import React from 'react'
 import { Loader, Nav } from 'rsuite'
 import Roomitem from './Roomitem'
 import { useRooms } from '../../Context/rooms.context'
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 function Chatroom({aboveElHeight}) {
 
   const rooms = useRooms();
   const location = useLocation();
-  let navigate = useNavigate();
+  // let navigate = useNavigate();
 
 //   function changeLocation(placeToGo){
 //     navigate(placeToGo, { replace: true });

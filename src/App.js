@@ -7,6 +7,7 @@ import PrivateRoute from "./components/privateRouter";
 import PublicRouter from "./components/PublicRoute";
 import { ProfileProvider, } from "./Context/Profile.context";
 import 'rsuite/dist/styles/rsuite-default.css';
+import Chat from "./pages/Home/Chat";
 
 
 
@@ -16,7 +17,11 @@ function App() {
     <Routes>
       <Route path="/signin" element={<Signin/>?<Signin/> : <Home/> }></Route>
       <Route path="/" element= {<PrivateRoute/> ? <PrivateRoute/> : <Home/> }></Route>
-      <Route path="/chat/:id" element= {<PrivateRoute/> ? <PrivateRoute/> : <Home/> }></Route>
+      <Route exact path="/chat/:id" element= {<PrivateRoute/> ? <PrivateRoute/> : <Home/> }></Route>
+      <Route exact path="/chat/:id" element= {<Chat/> ? <Home/> : <Chat/>}></Route>
+
+
+
 
       {/* <Route path="/" element= {<Home/>} />
       <Route path="/" element = {<PrivateRoute/>} /> */}
