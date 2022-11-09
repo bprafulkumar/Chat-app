@@ -1,9 +1,10 @@
-import React, { useCallback } from 'react'
-import { Navigate } from 'react-router'
+import React, { memo, useCallback } from 'react'
+// import { Navigate } from 'react-router'
 import { Alert, Button, Drawer, Icon } from 'rsuite'
 import Dashboard from '.'
+import { isOfflineForDatabase } from '../../Context/Profile.context'
 import { useMediaQuery, useModelState } from '../../misc/custom-hooks'
-import { auth } from '../../misc/firebase'
+import { auth, database } from '../../misc/firebase'
 
 // import 'rsuite/styles/index.less'
 
@@ -13,9 +14,14 @@ function DashboardToggle() {
     const { isOpen , open , close } = useModelState()
 
     const onSignOut =useCallback(() =>{
-      auth.signOut();
-        Alert.info("SignOut",4000)
-        close()
+      
+      database.ref(`/status/${auth.currentUser.uid}`).set(isOfflineForDatabase).then(() => {
+        auth.signOut();
+      }).catch(err=> {
+        Alert.error(err.message,4000);
+      })
+      Alert.info("SignOut",4000)
+      close()
       },[close])
   return (
 
@@ -31,4 +37,4 @@ function DashboardToggle() {
   )
 }
 
-export default DashboardToggle
+export default memo(DashboardToggle)

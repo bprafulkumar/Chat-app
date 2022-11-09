@@ -4,6 +4,8 @@ import { auth } from '../../misc/firebase'
 import firebase from 'firebase/app'
 
 function ProviderBlock() {
+    // const isConnected = ''
+    // const setIsConnected = ''
 
     const [isConnected , setIsConnected] = useState({
         "google.com" : auth.currentUser.providerData.some(data =>
@@ -13,6 +15,8 @@ function ProviderBlock() {
             data.providerId === 'facebook.com'
         )
     })
+    // const [isConnected , setIsConnected] = useState('')
+
   
 
     const updateIsConnected = (providerId,value) =>{

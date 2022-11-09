@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { ButtonToolbar, Icon } from 'rsuite'
 import { CurrentRoomContext, CurrentRoomProvider, useCurrentRoom } from '../../../Context/current-room.context'
 import { useMediaQuery } from '../../../misc/custom-hooks'
+import EditRoomBtnDrawer from './EditRoomBtnDrawer'
 import RoomInfoBtnModal from './RoomInfoBtnModal'
 // import Sidebar from '../../sidebar'
 
@@ -26,7 +27,7 @@ function Top() {
         <div>
 
         <ButtonToolbar className='ws-nowrap'>
-          todo
+          <EditRoomBtnDrawer/>
         </ButtonToolbar>
         </div>
        </div>

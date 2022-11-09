@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react'
 import { Alert, Icon, Input, InputGroup } from 'rsuite'
 
-function Editableinput({initialValue,onSave,name , label = null , placeholder = "Write Your Value" , emptyMsg = "input is empty", ...inputprops }) {
+function Editableinput({initialValue,onSave,name , label = null , placeholder = "Write Your Value" , emptyMsg = "input is empty",wrapperClassName = '', ...inputprops }) {
     const [input , setInput] = useState(initialValue)
     const [isEditable , setIsEditable] = useState(false)
 
@@ -29,7 +29,7 @@ function Editableinput({initialValue,onSave,name , label = null , placeholder = 
         setIsEditable(false)
     }
   return (
-    <div>
+    <div className={wrapperClassName}>
      {label}
      <InputGroup>
      <Input {...inputprops} disabled={!isEditable} placeholder= {placeholder} value={input} onChange={onInputChange}></Input>

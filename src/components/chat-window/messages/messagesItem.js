@@ -1,6 +1,7 @@
 import React, { memo } from 'react'
 import TimeAgo from 'timeago-react'
 import Profileavatar from '../../Dashboard/Profileavatar'
+import PresenceDot from '../../PresenceDot'
 import ProfileInfoBtnModal from './ProfileInfoBtnModal'
 
 function MessageItem({message}) {
@@ -10,7 +11,10 @@ function MessageItem({message}) {
 
     <li className='padded mb-1'>
       <div className=' d-flex align-items-center font-bolder mb-1'>
-        <Profileavatar src = {author.avatar} name={author.name} className='m1-1' size = 'xs' />
+
+        <PresenceDot uid={author.uid} />
+
+        <Profileavatar src = {author.avatar} name={author.name} className='m1-1 ml-2' size = 'xs' />
 
         {/* <span className='ml-2'>{author.name}</span> */}
         <ProfileInfoBtnModal profile={author} appearance = 'link' className="p-0 ml-1 text-black" message = {message} />

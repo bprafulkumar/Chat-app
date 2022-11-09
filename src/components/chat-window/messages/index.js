@@ -16,7 +16,7 @@ function Messages() {
     const messagesRef = database.ref('/messages');
 
     messagesRef.orderByChild('roomId').equalTo(id).on('value',(snap)=>{
-      console.log(snap.val(),"snapvalue")
+      // console.log(snap.val(),"snapvalue")
       const data =trasformToArrWithId(snap.val());
 
       setMessages(data)

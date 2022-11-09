@@ -38,7 +38,6 @@ function AvatarUploadbtn() {
     const {profile} = useProfile()
     const [isLoading , setIsLoading] = useState(false)
 
-    console.log(profile,"Profile=>>>>>>>>>>")
 
     const onFileInputChange = (ev) =>{
         const currFiles = ev.target.files;
