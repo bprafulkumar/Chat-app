@@ -25,7 +25,7 @@ export const ProfileProvider = ({children}) => {
     let userStatusRef;
     useEffect(() =>{
         const authUnsub =  auth.onAuthStateChanged(authObj => {
-            // console.log(authObj,"oososossoso")
+            // console.log(authObj.uid,"oososossoso")sss
             if(authObj){
                 
                 userStatusRef = database.ref(`/status/${authObj.uid}`);

@@ -6,12 +6,16 @@ import Messages from '../../components/chat-window/messages'
 import Top from '../../components/chat-window/top'
 import { CurrentRoomProvider } from '../../Context/current-room.context'
 import { useRooms } from '../../Context/rooms.context'
+import { auth } from '../../misc/firebase'
+import { trasformToArr } from '../../misc/helper'
 
 function Chat() {
 
     const { id } = useParams();
 
     const rooms = useRooms();
+
+   
 
     if(!rooms){
         return <Loader center vertical size='md' content="Loading" speed='slow' />
@@ -25,13 +29,20 @@ function Chat() {
 
   
 
-    const {name , description} = currentRoom;
+    const {name , description,} = currentRoom;
+
+
+    const admins = trasformToArr(currentRoom.admins)
+    const isAdmin = admins.includes(auth.currentUser.uid)
+    // console.log(isAdmin,"dhdhdhd")
+    // console.log(admins , "hdhfhfhfh")
+
 
     // console.log(name,"prafyshshsh", description , "deccs")
 
-    // const CurrentRoomData = {
-    //         name,description
-    // }
+    const CurrentRoomData = {
+            name,description,admins,isAdmin
+    }
   return (
     <CurrentRoomProvider data ={currentRoom}>
       <div className='chat-top'>

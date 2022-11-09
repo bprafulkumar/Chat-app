@@ -3,13 +3,24 @@ import { Link } from 'react-router-dom'
 import { ButtonToolbar, Icon } from 'rsuite'
 import { CurrentRoomContext, CurrentRoomProvider, useCurrentRoom } from '../../../Context/current-room.context'
 import { useMediaQuery } from '../../../misc/custom-hooks'
+import { auth } from '../../../misc/firebase'
+import { trasformToArr } from '../../../misc/helper'
 import EditRoomBtnDrawer from './EditRoomBtnDrawer'
 import RoomInfoBtnModal from './RoomInfoBtnModal'
 // import Sidebar from '../../sidebar'
 
 function Top() {
     // const name = useCurrentRoom()
+    // const admins = trasformToArr(currentRoom.admins)
+    // const isAdmin = admins.includes(auth.currentUser.uid)
+
+    // console.log('admin', admins, isAdmin)
     const details = useContext(CurrentRoomContext)
+// console.log(details,"details")
+    const admins =  trasformToArr(details.admins)
+    const isAdmin = admins.includes(auth.currentUser.uid);
+  
+
     // console.log("detaiks",details)
     const isMobile = useMediaQuery('(max-width :992px)')
   return (
@@ -27,7 +38,10 @@ function Top() {
         <div>
 
         <ButtonToolbar className='ws-nowrap'>
+          {
+            isAdmin && 
           <EditRoomBtnDrawer/>
+          }
         </ButtonToolbar>
         </div>
        </div>

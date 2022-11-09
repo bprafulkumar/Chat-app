@@ -16,7 +16,9 @@ function EditRoomBtnDrawer() {
 
     const details = useContext(CurrentRoomContext)
 
-    const {id} = useParams
+    // console.log(details,"detail")
+
+    const {id} = useParams();
 
 
     const updateData = (key,value) => {
