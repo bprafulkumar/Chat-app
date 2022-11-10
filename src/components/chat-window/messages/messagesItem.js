@@ -2,6 +2,7 @@ import React, { memo, useContext } from 'react'
 import { Button } from 'rsuite'
 import TimeAgo from 'timeago-react'
 import { CurrentRoomContext } from '../../../Context/current-room.context'
+import { useHover } from '../../../misc/custom-hooks'
 import { auth } from '../../../misc/firebase'
 import { trasformToArr } from '../../../misc/helper'
 import Profileavatar from '../../Dashboard/Profileavatar'
@@ -19,10 +20,12 @@ function MessageItem({message,handleAdmin}) {
     const isAuthor = auth.currentUser.uid === author.uid
     const canGrantAdmin = isAdmin && !isAuthor
 
+    const [selfRef,isHover] = useHover()
+
     // console.log(canGrantAdmin,"canGrantAdmin")
   return (
 
-    <li className='padded mb-1'>
+    <li className= {`padded mb-1 cusor-pointer ${isHover ? 'bg-black-02' : ''}`} ref={selfRef}>
       <div className=' d-flex align-items-center font-bolder mb-1'>
 
         <PresenceDot uid={author.uid} />
