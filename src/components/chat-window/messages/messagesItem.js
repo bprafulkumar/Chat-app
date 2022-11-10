@@ -7,6 +7,7 @@ import { auth } from '../../../misc/firebase'
 import { trasformToArr } from '../../../misc/helper'
 import Profileavatar from '../../Dashboard/Profileavatar'
 import PresenceDot from '../../PresenceDot'
+import IconBtnControl from './IconBtnControl'
 import ProfileInfoBtnModal from './ProfileInfoBtnModal'
 
 function MessageItem({message,handleAdmin}) {
@@ -43,6 +44,8 @@ function MessageItem({message,handleAdmin}) {
           }
         </ProfileInfoBtnModal>
         <TimeAgo datetime={createdAt} className='font-normal text-black-45 ml-2'/>
+
+        <IconBtnControl {...(true ? {color: 'red'} : {})} isVisible iconName = "heart" tooltip = 'Like this message' onClick={() => {}} badgeContent ={5} />
         </div>
 
         <div>
