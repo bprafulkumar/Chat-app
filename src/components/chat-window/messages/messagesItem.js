@@ -10,7 +10,7 @@ import PresenceDot from '../../PresenceDot'
 import IconBtnControl from './IconBtnControl'
 import ProfileInfoBtnModal from './ProfileInfoBtnModal'
 
-function MessageItem({message,handleAdmin,handleLike}) {
+function MessageItem({message,handleAdmin,handleLike,handleDelete}) {
   const {author,createdAt , text,likes,likeCount} = message
 
   const details = useContext(CurrentRoomContext)
@@ -57,6 +57,10 @@ function MessageItem({message,handleAdmin,handleLike}) {
         
 
         <IconBtnControl {...(isLiked ? {color: 'red'} : {})} isVisible={canShowIcon} iconName = "heart" tooltip = 'Like this message' onClick={() => handleLike(message.id)} badgeContent ={likeCount} />
+          {
+            isAuthor && <IconBtnControl  isVisible={canShowIcon} iconName = "close" tooltip = 'Delete this message' onClick={() => handleDelete(message.id)} />
+          }
+
         </div>
 
         <div>
