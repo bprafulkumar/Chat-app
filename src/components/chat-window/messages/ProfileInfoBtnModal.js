@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { Button, Modal } from 'rsuite';
 import { useModelState } from '../../../misc/custom-hooks';
 import AvatarUploadbtn from '../../Dashboard/AvatarUploadbtn';
 import Profileavatar from '../../Dashboard/Profileavatar';
 
-function ProfileInfoBtnModal({profile, ...btnProps}) {
+function ProfileInfoBtnModal({profile,children, ...btnProps}) {
 
     const {isOpen , open , close} = useModelState()
 
@@ -31,6 +31,7 @@ function ProfileInfoBtnModal({profile, ...btnProps}) {
         <p>Member since {memberSince}</p>
         </Modal.Body>
         <Modal.Footer>
+          {children}
             <Button block onClick={close}>
                 Close
             </Button>
@@ -40,4 +41,4 @@ function ProfileInfoBtnModal({profile, ...btnProps}) {
   )
 }
 
-export default ProfileInfoBtnModal
+export default memo(ProfileInfoBtnModal)

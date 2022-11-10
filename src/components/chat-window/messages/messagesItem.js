@@ -1,12 +1,25 @@
-import React, { memo } from 'react'
+import React, { memo, useContext } from 'react'
+import { Button } from 'rsuite'
 import TimeAgo from 'timeago-react'
+import { CurrentRoomContext } from '../../../Context/current-room.context'
+import { auth } from '../../../misc/firebase'
+import { trasformToArr } from '../../../misc/helper'
 import Profileavatar from '../../Dashboard/Profileavatar'
 import PresenceDot from '../../PresenceDot'
 import ProfileInfoBtnModal from './ProfileInfoBtnModal'
 
-function MessageItem({message}) {
+function MessageItem({message,handleAdmin}) {
   const {author,createdAt , text} = message
-  // console.log("author",author)
+
+  const details = useContext(CurrentRoomContext)
+    const admins =  trasformToArr(details.admins)
+    const isAdmin = admins.includes(auth.currentUser.uid);
+  
+    const isMsgAuthorAdmin = admins.includes(author.uid);
+    const isAuthor = auth.currentUser.uid === author.uid
+    const canGrantAdmin = isAdmin && !isAuthor
+
+    // console.log(canGrantAdmin,"canGrantAdmin")
   return (
 
     <li className='padded mb-1'>
@@ -17,7 +30,15 @@ function MessageItem({message}) {
         <Profileavatar src = {author.avatar} name={author.name} className='m1-1 ml-2' size = 'xs' />
 
         {/* <span className='ml-2'>{author.name}</span> */}
-        <ProfileInfoBtnModal profile={author} appearance = 'link' className="p-0 ml-1 text-black" message = {message} />
+        <ProfileInfoBtnModal profile={author} appearance = 'link' className="p-0 ml-1 text-black" message = {message} >
+          {canGrantAdmin &&
+          <Button block onClick={() => handleAdmin(author.uid)} color='blue'>
+            {
+              isMsgAuthorAdmin ? 'Remove admin permission' : 'Give admin in this room'
+            }
+          </Button>
+          }
+        </ProfileInfoBtnModal>
         <TimeAgo datetime={createdAt} className='font-normal text-black-45 ml-2'/>
         </div>
 
