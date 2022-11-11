@@ -3,7 +3,7 @@ import { Container,Grid,Row,Panel,Col,Button, Icon, Alert } from 'rsuite';
 import "../Cssfile/Signin.css"
 import firebase from "firebase/app"
 import { auth, database } from "../misc/firebase";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 const Signin = () => {

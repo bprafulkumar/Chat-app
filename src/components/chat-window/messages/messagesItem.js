@@ -8,10 +8,20 @@ import { trasformToArr } from '../../../misc/helper'
 import Profileavatar from '../../Dashboard/Profileavatar'
 import PresenceDot from '../../PresenceDot'
 import IconBtnControl from './IconBtnControl'
+import ImgBtnModal from './ImgBtnModal'
 import ProfileInfoBtnModal from './ProfileInfoBtnModal'
 
+const renderMessageFile = (file) => {
+  if(file.contentType.includes('image')){
+    return <div className='height-220'>
+      <ImgBtnModal src={file.url} fileName = {file.name} />
+    </div>
+  }
+
+  return <a href={file.url}>Download {file.url}</a>
+}
 function MessageItem({message,handleAdmin,handleLike,handleDelete}) {
-  const {author,createdAt , text,likes,likeCount} = message
+  const {author,createdAt ,file,text,likes,likeCount} = message
 
   const details = useContext(CurrentRoomContext)
     const admins =  trasformToArr(details.admins)
@@ -32,6 +42,7 @@ function MessageItem({message,handleAdmin,handleLike,handleDelete}) {
     const [selfRef,isHover] = useHover()
     
     const canShowIcon = isMobile || isHover
+
     // console.log(canGrantAdmin,"canGrantAdmin")
   return (
 
@@ -64,7 +75,10 @@ function MessageItem({message,handleAdmin,handleLike,handleDelete}) {
         </div>
 
         <div>
+          {text &&
           <span className='word-break-all'>{text}</span>
+          }
+          {file && renderMessageFile(file)}
         </div>
     </li>
    

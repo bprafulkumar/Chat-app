@@ -30,12 +30,12 @@ const Home = () => {
             <Chat/>
         </Col>
 
-
+{/* 
         {
             isDesktop && <Col xs={24} md={8} className="h-100">
-                <h6 className="text-center mt-page">Please select chat</h6>
+                <h6 className="text-center mt-page"></h6>
             </Col>
-        }            
+        }             */}
             </Row>
         </Grid>
         </RoomsProvider>

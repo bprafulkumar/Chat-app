@@ -5,6 +5,8 @@ import firebase from 'firebase/app';
 import { useProfile } from '../../../Context/Profile.context';
 import { useParams } from 'react-router';
 import { database } from '../../../misc/firebase';
+import AttachmentBtnModal from './AttachmentBtnModal';
+import AudioMsgBtn from './AudioMsgBtn';
 
 function assembleMessage(profile,id){
   return {
@@ -69,10 +71,39 @@ function Bottom() {
      }
   }
 
+  const afterUpload = useCallback(async(files) => {
+      setIsLoading(true);
+
+      const updates = {};
+
+      files.forEach(file => {
+        const msgData = assembleMessage(profile,id);
+        msgData.file = file;
+
+        const messageId = database.ref('message').push().key;
+
+        updates[`/messages/${messageId}`] = msgData;
+      })
+      const lastMsgId = Object.keys(updates).pop();
+
+      updates[`/rooms/${id}/lastMessage`] = {
+        ...updates[lastMsgId],
+        msgId:lastMsgId
+      }
+      try {
+        await database.ref().update(updates);
+        setIsLoading(false)
+      } catch (error) {
+        Alert.error(error.message , 4000)
+      }
+  },[id,profile])
+
 
   return (
     <div>
      <InputGroup>
+     <AttachmentBtnModal afterUpload={afterUpload}/>
+     <AudioMsgBtn afterUpload={afterUpload} />
      <Input placeholder = "Write a new message here..." value={input} onChange={onInputChange} onKeyDown = {onKeyDown}/>
 
      <InputGroup.Button color='blue' appearance='primary' onClick={onSendClick} disabled={isLoading}>
