@@ -13,12 +13,18 @@ import ProfileInfoBtnModal from './ProfileInfoBtnModal'
 
 const renderMessageFile = (file) => {
   if(file.contentType.includes('image')){
-    return <div className='height-220'>
+    return  <div className='height-220'>
       <ImgBtnModal src={file.url} fileName = {file.name} />
     </div>
-  }
+}
+  if(file.contentType.includes('audio')){
+  return <audio controls>
+    <source src={file.url} type="audio/mp3" />
+    Your browser does not support the audio element
+  </audio>
 
-  return <a href={file.url}>Download {file.url}</a>
+  }
+return <a href={file.url}>Download {file.url}</a>
 }
 function MessageItem({message,handleAdmin,handleLike,handleDelete}) {
   const {author,createdAt ,file,text,likes,likeCount} = message
@@ -69,7 +75,7 @@ function MessageItem({message,handleAdmin,handleLike,handleDelete}) {
 
         <IconBtnControl {...(isLiked ? {color: 'red'} : {})} isVisible={canShowIcon} iconName = "heart" tooltip = 'Like this message' onClick={() => handleLike(message.id)} badgeContent ={likeCount} />
           {
-            isAuthor && <IconBtnControl  isVisible={canShowIcon} iconName = "close" tooltip = 'Delete this message' onClick={() => handleDelete(message.id)} />
+            isAuthor && <IconBtnControl  isVisible={canShowIcon} iconName = "close" tooltip = 'Delete this message' onClick={() => handleDelete(message.id,file)} />
           }
 
         </div>
